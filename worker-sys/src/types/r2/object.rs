@@ -36,7 +36,7 @@ extern "C" {
     pub fn custom_metadata(this: &R2Object) -> Result<js_sys::Object, JsValue>;
 
     #[wasm_bindgen(method, catch, getter)]
-    pub fn range(this: &R2Object) -> Result<R2Range, JsValue>;
+    pub fn range(this: &R2Object) -> Result<Option<R2Range>, JsValue>;
 
     #[wasm_bindgen(method, catch, js_name=writeHttpMetadata)]
     pub fn write_http_metadata(

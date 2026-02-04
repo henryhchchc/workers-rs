@@ -262,12 +262,12 @@ impl Object {
         Ok(map)
     }
 
-    pub fn range(&self) -> Result<Range> {
-        match &self.inner {
+    pub fn range(&self) -> Result<Option<Range>> {
+        let range_sys = match &self.inner {
             ObjectInner::NoBody(inner) => inner.range().unwrap(),
             ObjectInner::Body(inner) => inner.range().unwrap(),
-        }
-        .try_into()
+        };
+        range_sys.map(|r| r.try_into()).transpose()
     }
 
     pub fn body(&self) -> Option<ObjectBody<'_>> {
